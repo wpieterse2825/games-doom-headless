@@ -8,3 +8,4 @@ build-job:
     - mv bazelisk-linux-amd64 /usr/bin/bazel
     - echo "build --remote_header=x-buildbuddy-api-key=${BUILDBUDDY_TOKEN}" > user.bazelrc
     - bazel build --config=ci --keep_going //...
+    - bazel run --config=ci --keep_going //games/doom_headless
