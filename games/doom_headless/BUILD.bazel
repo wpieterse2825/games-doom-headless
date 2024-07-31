@@ -1,0 +1,38 @@
+config_setting(
+    name = "linux",
+    constraint_values = [
+        "@platforms//os:linux",
+    ],
+)
+
+cc_binary(
+    name = "doom_headless",
+    srcs = glob(
+        include = [
+            "*.c",
+            "*.h",
+            "*.cpp",
+        ],
+    ),
+    data = [
+        "DDQ-EP1.LMP",
+        "DDQ-EP2.LMP",
+        "DDQ-EP3.LMP",
+        "DDQ-EP4.LMP",
+        "DOOM.WAD",
+        "crc.dat",
+    ],
+    defines = [
+        "HEADLESS",
+    ] + select(
+        {
+            ":linux": [
+                "NORMALUNIX",
+            ],
+            "//conditions:default": [],
+        },
+    ),
+    deps = [
+        "@bazel_tools//tools/cpp/runfiles",
+    ],
+)

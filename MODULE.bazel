@@ -1,0 +1,22 @@
+module(
+    name = "com_github_wpieterse_me_games_doom_headless",
+    version = "0.0.0",
+)
+
+bazel_dep(
+    name = "googletest",
+    version = "1.14.0",
+)
+
+http_archive = use_repo_rule(
+    "@bazel_tools//tools/build_defs/repo:http.bzl",
+    "http_archive",
+)
+
+http_archive(
+    name = "celero",
+    url = "https://github.com/DigitalInBlue/Celero/archive/refs/tags/v2.9.0.tar.gz",
+    build_file = "@//third_party:celero.BUILD",
+    integrity = "sha256-1Z34Rpbg3VgCLSxCg3NiwG66bR4pusYfezFDvHPXeeU=",
+    strip_prefix = "Celero-2.9.0",
+)

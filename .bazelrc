@@ -1,0 +1,15 @@
+build --copt="-std=c17"
+build --copt="-march=native"
+
+build --cxxopt="-std=c++20"
+build --cxxopt="-march=native"
+
+build --bes_results_url=https://app.buildbuddy.io/invocation/
+build --bes_backend=grpcs://remote.buildbuddy.io
+
+try-import %workspace%/user.bazelrc
+
+build:ci --bes_results_url=https://wpieterse-me.buildbuddy.io/invocation/
+build:ci --bes_backend=grpcs://wpieterse-me.buildbuddy.io
+build:ci --remote_cache=grpcs://wpieterse-me.buildbuddy.io
+build:ci --remote_timeout=3600
